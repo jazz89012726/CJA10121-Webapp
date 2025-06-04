@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.toiukha.spot.model.SpotService;
 import com.toiukha.spot.model.SpotVO;
+import com.toiukha.spot.util.NumberUtil;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -100,7 +101,7 @@ public class SpotServlet extends HttpServlet {
 			Byte spotStatus = Byte.valueOf(req.getParameter("spotStatus").trim());
 			String spotDesc = req.getParameter("spotDesc");
 
-			// 驗證邏輯可自行擴充
+			// 驗證邏輯可在擴充
 			if (spotName == null || spotName.trim().length() == 0) {
 				errorMsgs.add("景點名稱請勿空白");
 			}
@@ -139,17 +140,32 @@ public class SpotServlet extends HttpServlet {
 
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 			String spotName = req.getParameter("spotName");
-			Integer crtId = Integer.valueOf(req.getParameter("crtId").trim());
+//			Integer crtId = Integer.valueOf(req.getParameter("crtId").trim());
 			String spotLoc = req.getParameter("spotLoc");
-			Double spotLat = Double.valueOf(req.getParameter("spotLat").trim());
-			Double spotLng = Double.valueOf(req.getParameter("spotLng").trim());
-			Byte spotStatus = Byte.valueOf(req.getParameter("spotStatus").trim());
+//			Double spotLat = Double.valueOf(req.getParameter("spotLat").trim());
+//			Double spotLng = Double.valueOf(req.getParameter("spotLng").trim());
+//			Byte spotStatus = Byte.valueOf(req.getParameter("spotStatus").trim());
 			String spotDesc = req.getParameter("spotDesc");
 
 			// 驗證邏輯
-			if (spotName == null || spotName.trim().length() == 0) {
-				errorMsgs.add("景點名稱請勿空白");
+			Integer crtId = NumberUtil.safeParseInt(req.getParameter("crtId"));
+			if (crtId == null) {
+			    errorMsgs.add("會員ID格式不正確");
 			}
+			Double spotLat = NumberUtil.safeParseDouble(req.getParameter("spotLat"));
+			if (spotLat == null) {
+			    errorMsgs.add("緯度格式不正確");
+			}
+			Double spotLng = NumberUtil.safeParseDouble(req.getParameter("spotLng"));
+			if (spotLng == null) {
+			    errorMsgs.add("經度格式不正確");
+			}
+			Byte spotStatus = NumberUtil.safeParseByte(req.getParameter("spotStatus"));
+			if (spotStatus == null) {
+			    errorMsgs.add("狀態格式不正確");
+			}
+
+		
 
 			SpotVO spotVO = new SpotVO();
 			spotVO.setSpotName(spotName);

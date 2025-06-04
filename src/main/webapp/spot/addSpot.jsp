@@ -104,9 +104,9 @@ body {
 			</div>
 		</c:if>
 		<form method="post" action="<c:url value='/spot/SpotServlet'/>">
-			<label>名稱：</label> <input type="text" name="spotName"
+			<label>景點名稱：</label> <input type="text" name="spotName"
 				value="<%=spotVO != null ? spotVO.getSpotName() : ""%>" required>
-			<label>建立者ID：</label> <input type="text" name="crtId"
+			<label>會員ID：</label> <input type="text" name="crtId"
 				value="<%=spotVO != null ? spotVO.getCrtId() : ""%>" required>
 			<label>地址：</label> <input type="text" name="spotLoc"
 				value="<%=spotVO != null ? spotVO.getSpotLoc() : ""%>" required>
@@ -117,7 +117,7 @@ body {
 			<label>狀態：</label> <input type="text" name="spotStatus"
 				value="<%=spotVO != null ? spotVO.getSpotStatus() : ""%>" required>
 			<label>描述：</label> <input type="text" name="spotDesc"
-				value="<%=spotVO != null ? spotVO.getSpotDesc() : ""%>" required>
+				value="<%=spotVO != null ? spotVO.getSpotDesc() : ""%>">
 			<input type="hidden" name="action" value="insert" /> <input
 				type="submit" value="新增" />
 		</form>

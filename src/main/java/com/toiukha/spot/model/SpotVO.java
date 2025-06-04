@@ -6,13 +6,13 @@ public class SpotVO implements Serializable {
 //	private static final long serialVersionUID = 1L;
 
 	private Integer spotId;
-	private String spotName;
-	private Integer crtId;
-	private String spotLoc;
-	private Double spotLat;
-	private Double spotLng;
-	private Byte spotStatus;
-	private String spotDesc;
+	private String spotName;	//景點名稱
+	private Integer crtId;		//會員ID
+	private String spotLoc;		//地址
+	private Double spotLat;		//緯度
+	private Double spotLng;		//經度
+	private Byte spotStatus;	//狀態
+	private String spotDesc;	//描述
 
 	// 無參數建構子
 	public SpotVO() {
